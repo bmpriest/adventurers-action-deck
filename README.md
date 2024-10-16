@@ -10,14 +10,24 @@ While supporting a full character sheet based off of the 5e sheet and supporting
 CURRENTLY USES A MONGODB ATLAS DB
 
 To install:
+
 git clone https://github.com/bmpriest/adventurers-action-deck.git
+
 cd .\adventurers-action-deck\server
+
 npm install
+
 cd ..\client
+
 npm install
+
 place the config.env under \server\
+
 in one terminal, node --env-file=config.env server
+
 in one terminal, npm run dev
+
+
 
 enter some information and see it show up! 
 
