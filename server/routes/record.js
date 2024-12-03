@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
     let newDocument = {
       name: req.body.name,
       position: req.body.position,
+      extra: req.body.extra,
       level: req.body.level,
     };
     let collection = await db.collection("records");
@@ -53,6 +54,7 @@ router.patch("/:id", async (req, res) => {
       $set: {
         name: req.body.name,
         position: req.body.position,
+        extra: req.body.extra,
         level: req.body.level,
       },
     };

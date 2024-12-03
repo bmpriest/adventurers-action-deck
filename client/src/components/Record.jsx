@@ -5,6 +5,7 @@ export default function Record() {
   const [form, setForm] = useState({
     name: "",
     position: "",
+    extra:"",
     level: "",
   });
   const [isNew, setIsNew] = useState(true);
@@ -75,7 +76,7 @@ export default function Record() {
     } catch (error) {
       console.error('A problem occurred with your fetch operation: ', error);
     } finally {
-      setForm({ name: "", position: "", level: "" });
+      setForm({ name: "", position: "", extra: "", level: "" });
       navigate("/");
     }
   }
@@ -88,9 +89,9 @@ export default function Record() {
         onSubmit={onSubmit}
         className="border rounded-lg overflow-hidden p-4"
       >
-        <div className="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-slate-900/10 pb-12 md:grid-cols-2">
+        <div className="card grid grid-cols-1 gap-x-8 gap-y-10 border-b border-slate-900/10 pb-12 md:grid-cols-2">
           <div>
-            <h2 className="text-base font-semibold leading-7 text-slate-900">
+            <h2 className="prose">
               Employee Info
             </h2>
             <p className="mt-1 text-sm leading-6 text-slate-600">
@@ -138,6 +139,27 @@ export default function Record() {
                     placeholder="Developer Advocate"
                     value={form.position}
                     onChange={(e) => updateForm({ position: e.target.value })}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="sm:col-span-4">
+              <label
+                htmlFor="extra"
+                className="block text-sm font-medium leading-6 text-slate-900"
+              >
+                Extra
+              </label>
+              <div className="mt-2">
+                <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-slate-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                  <input
+                    type="text"
+                    name="extra"
+                    id="extra"
+                    className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-slate-900 placeholder:text-slate-400 focus:ring-0 sm:text-sm sm:leading-6"
+                    placeholder="Extra Entry"
+                    value={form.extra}
+                    onChange={(e) => updateForm({ extra: e.target.value })}
                   />
                 </div>
               </div>

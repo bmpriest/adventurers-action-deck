@@ -35,6 +35,8 @@ const Record = (props) => (
   </tr>
 );
 
+
+
 export default function RecordList() {
   const [records, setRecords] = useState([]);
 
@@ -82,7 +84,7 @@ export default function RecordList() {
       <h3 className="text-lg font-semibold p-4">Employee Records</h3>
       <div className="border rounded-lg overflow-hidden">
         <div className="relative w-full overflow-auto">
-          <table className="w-full caption-bottom text-sm">
+          <table className="table table-zebra">
             <thead className="[&_tr]:border-b">
               <tr className="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                 <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0">
