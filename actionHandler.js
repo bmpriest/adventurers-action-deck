@@ -17,6 +17,13 @@ function rollDie(dice) {
     return total;
 }
 
+function getBonus(num) {
+    // 14 = 14 - 10 = 4 / 2 = +2
+    // 8 = 8 - 10 = -2 /2 = -1
+    val = (num - 10) / 2
+    return (val > 0) ? Math.floor(val) : Math.ceil(val);
+}
+
 function verboseDie(dice) {
     let dieNum = dice[0];
     let dieType = dice[1];
@@ -30,6 +37,25 @@ function verboseDie(dice) {
     }
 
     return total;
+}
+
+class Stats {
+	constructor(str, dex, con, inte, wis, cha, maxHP, curHP, tempHP, ac, init, prof, speed, hitDie) {
+		this.str = str;
+		this.dex = dex;
+		this.con = con;
+		this.inte = inte;
+		this.wis = wis;
+		this.cha = cha;
+		this.maxHP = maxHP;
+		this.curHP = curHP;
+		this.tempHP = tempHP;
+		this.ac = ac;
+		this.init = init;
+		this.prof = prof;
+		this.speed = speed;
+		this.hitDie = hitDie;
+	}
 }
 
 // an action can be:
@@ -49,27 +75,46 @@ function verboseDie(dice) {
 // 2d8 + 5 slashing, 1d8 thunder
 // [ [2, 8, 5, "slashing"], [1, 8, 0, "thunder"] ]
 
-// class Action {
-//     constructor(name, type, description) {
-//         this.name = name;
-//         this.type = type;
-//         this.description = description;
-//     }
+class Action {
+    constructor(name, type, description, resource, skill, damage, dmgType) {
+        this.name = name;
+        this.type = type;
+        this.description = description;
+        this.resource = resource;
+        this.skill = skill;
+        this.damage = damage;
+        this.dmgType = dmgType;
+    }
 
-//     constructor(name, type, description, roll) {
-//         this.name = name;
-//         this.type = type;
-//         this.description = description;
-//         this.roll = roll;
-//     }
-// }
+    performRoll() {
+        let totals = [];
+
+    }
+}
+
+let basicAttack = new Action("Longsword", "standard", "Attack with a longsword", null, "str", [1,8,5], "Slashing");
+
+let daar = new Stats(20, 14, 16, 14, 12, 12, 120, 120, 0, 20, 2, 4, "Yes");
+
+function actionDoer(character, action) {
+    attr = action.skill;
+    attrVal = character[attr];
+
+    console.log("Attribute is " + attr);
+    console.log("Character's attribute is " + attrVal);
+    console.log(`Daar is performing ${action.name} with ${attr} of ${attrVal}:`)
+    console.log(`Rolling to hit: d20 + ${character.prof}: ${rollDie([1,20,character.prof])}`)
+    console.log(`Rolling for damage: ${action.damage[0]}d${action.damage[1]} + ${action.damage[2]} ${action.dmgType} damage.`);
+    console.log(`    ${rollDie(action.damage)} ${action.dmgType} damage!`)
+}
+
+
 
 // const talking = Action("Talking", "Free", "Talking is always a free action.")
 
 function main() {
     console.log("Here we go!");
-    console.log("Rolling 2d8 + 5... ");
-    console.log(verboseDie([4, 4, 4]));
+    actionDoer(daar, basicAttack);
 }
 
 main();

@@ -4,9 +4,89 @@ import { useParams, useNavigate } from "react-router-dom";
 export default function Character() {
   const [form, setForm] = useState({
     name: "",
-    position: "",
-    extra:"",
     level: "",
+    xp: "",
+    class: "",
+    race: "",
+    background: "",
+    str: "",
+    dex: "",
+    con: "",
+    inte: "",
+    wis: "",
+    cha: "",
+    maxHP: "",
+    ac: "",
+    init: "",
+    prof: "",
+    speed: "",
+    hitDie: "",
+    strSav: "",
+    strSavProf: "",
+    dexSav: "",
+    dexSavProf: "",
+    conSav: "",
+    conSavProf: "",
+    inteSav: "",
+    inteSavProf: "",
+    wisSav: "",
+    wisSavProf: "",
+    chaSav: "",
+    chaSavProf: "",
+    acrobatics: "",
+    acrobaticsProf: "",
+    acrobaticsExper: "",
+		animalHandling: "",
+		animalHandlingProf: "",
+		animalHandlingExper: "",
+		arcana: "",
+    arcanaProf: "",
+    arcanaExper: "",
+		athletics: "",
+    athleticsProf: "",
+    athleticsExper: "",
+		deception: "",
+    deceptionProf: "",
+    deceptionExper: "",
+		herstory: "",
+    herstoryProf: "",
+    herstoryExper: "",
+		insight: "",
+    insightProf: "",
+    insightExper: "",
+		intimidation: "",
+    intimidationProf: "",
+    intimidationExper: "",
+		investigation: "",
+    investigationProf: "",
+    investigationExper: "",
+		medicine: "",
+    medicineProf: "",
+    medicineExper: "",
+		nature: "",
+    natureProf: "",
+    natureExper: "",
+		perception: "",
+    perceptionProf: "",
+    perceptionExper: "",
+		performance: "",
+    performanceProf: "",
+    performanceExper: "",
+		persuasion: "",
+		persuasionProf: "",
+		persuasionExper : "",
+		religion: "",
+    religionProf: "",
+    religionExper: "",
+		sleight: "",
+    sleightProf: "",
+    sleightExper: "",
+		stealth: "",
+    stealthProf: "",
+    stealthExper: "",
+		survival: "",
+    survivalExper: "",
+    survivalProf: "",
   });
   const [isNew, setIsNew] = useState(true);
   const params = useParams();
@@ -99,104 +179,104 @@ export default function Character() {
         <div>
           <label
             htmlFor="name"
-            className=""
+            class="input input-bordered flex items-center gap-2 w-auto"
           >
             Character Name
-          </label>
           <input
             type="text"
             name="name"
             id="name"
-            className=""
+            class="grow text-right"
             placeholder="First Last"
             value={form.name}
             onChange={(e) => updateForm({ name: e.target.value })}
-          />
+            />
+            </label>
         </div>
         <div>
           <label
             htmlFor="level"
-            className=""
+            class="input input-bordered flex items-center gap-2 w-auto"
           >
             Level
-          </label>
           <input
-            type="text"
+            type="number"
             name="level"
             id="level"
-            className=""
+            class="grow text-right"
             placeholder="1"
             value={form.level}
             onChange={(e) => updateForm({ level: e.target.value })}
-          />
+            />
+            </label>
         </div>
         <div>
           <label
             htmlFor="xp"
-            className=""
+            class="input input-bordered flex items-center gap-2 w-auto"
           >
             Experience Points
-          </label>
           <input
-            type="text"
+            type="number"
             name="xp"
             id="xp"
-            className=""
+            class="grow text-right"
             placeholder="0"
             value={form.xp}
             onChange={(e) => updateForm({ xp: e.target.value })}
-          />
+            />
+            </label>
         </div>
         <div>
           <label
             htmlFor="class"
-            className=""
+            class="input input-bordered flex items-center gap-2 w-auto"
           >
             Class
-          </label>
           <input
             type="text"
             name="class"
             id="class"
-            className=""
+            class="grow text-right"
             placeholder="Class"
             value={form.class}
             onChange={(e) => updateForm({ class: e.target.value })}
-          />
+            />
+            </label>
         </div>
         <div>
           <label
             htmlFor="race"
-            className=""
+            class="input input-bordered flex items-center gap-2 w-auto"
           >
             Race
-          </label>
           <input
             type="text"
             name="race"
             id="race"
-            className=""
+            class="grow text-right"
             placeholder="Race"
             value={form.race}
             onChange={(e) => updateForm({ race: e.target.value })}
-          />
+            />
+            </label>
         </div>
         <div>
           <label
             htmlFor="background"
-            className=""
+            class="input input-bordered flex items-center gap-2 w-auto"
           >
             Background
-          </label>
           <input
             type="text"
             name="background"
             id="background"
-            className=""
+            class="grow text-right"
             placeholder="Background"
             value={form.background}
             onChange={(e) => updateForm({ background: e.target.value })}
-          />
+            />
+            </label>
         </div>
         </div>
 
@@ -214,104 +294,110 @@ export default function Character() {
           <div>
             <label
               htmlFor="str"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Strength
-            </label>
             <input
-              type="text"
+              type="number"
               name="str"
               id="str"
-              className=""
+              className="grow text-right"
               placeholder="str"
               value={form.str}
               onChange={(e) => updateForm({ str: e.target.value })}
-            />
+              />
+              </label>
           </div>
           <div>
             <label
               htmlFor="dex"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Dexterity
-            </label>
             <input
-              type="text"
+              type="number"
               name="dex"
               id="dex"
-              className=""
+              className="grow text-right"
               placeholder="dex"
               value={form.dex}
               onChange={(e) => updateForm({ dex: e.target.value })}
-            />
+              />
+              </label>
           </div>
           <div>
             <label
               htmlFor="con"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Constitution
-            </label>
             <input
-              type="text"
+              type="number"
               name="con"
               id="con"
-              className=""
+              className="grow text-right"
               placeholder="con"
               value={form.con}
               onChange={(e) => updateForm({ con: e.target.value })}
-            />
+              />
+              </label>
           </div>
           <div>
             <label
               htmlFor="inte"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Intelligence
-            </label>
             <input
-              type="text"
+              type="number"
               name="inte"
               id="inte"
-              className=""
+              className="grow text-right"
               placeholder="inte"
               value={form.inte}
               onChange={(e) => updateForm({ inte: e.target.value })}
-            />
+              />
+              </label>
           </div>
           <div>
             <label
               htmlFor="wis"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Wisdom
-            </label>
             <input
-              type="text"
+              type="number"
               name="wis"
               id="wis"
-              className=""
+              className="grow text-right"
               placeholder="wis"
               value={form.wis}
               onChange={(e) => updateForm({ wis: e.target.value })}
-            />
+              />
+              </label>
           </div>
           <div>
             <label
               htmlFor="cha"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Charisma
-            </label>
             <input
-              type="text"
+              type="number"
               name="cha"
               id="cha"
-              className=""
+              className="grow text-right"
               placeholder="cha"
               value={form.cha}
               onChange={(e) => updateForm({ cha: e.target.value })}
-            />
+              />
+              </label>
           </div>
 
           <br></br>
@@ -319,109 +405,115 @@ export default function Character() {
           <div>
             <label
               htmlFor="maxHP"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Maximum HP
-            </label>
             <input
-              type="text"
+              type="number"
               name="maxHP"
               id="maxHP"
-              className=""
+              className="grow text-right"
               placeholder="maxHP"
               value={form.maxHP}
               onChange={(e) => updateForm({ maxHP: e.target.value })}
-            />
+              />
+              </label>
           </div>
 
                     <div>
             <label
               htmlFor="ac"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Armor Class
-            </label>
             <input
-              type="text"
+              type="number"
               name="ac"
               id="ac"
-              className=""
+              className="grow text-right"
               placeholder="ac"
               value={form.ac}
               onChange={(e) => updateForm({ ac: e.target.value })}
-            />
+              />
+              </label>
           </div>
 
                     <div>
             <label
               htmlFor="init"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Initiative Bonus
-            </label>
             <input
-              type="text"
+              type="number"
               name="init"
               id="init"
-              className=""
+              className="grow text-right"
               placeholder="init"
               value={form.init}
               onChange={(e) => updateForm({ init: e.target.value })}
-            />
+              />
+              </label>
           </div>
 
                     <div>
             <label
               htmlFor="prof"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Proficiency Bonus
-            </label>
             <input
-              type="text"
+              type="number"
               name="prof"
               id="prof"
-              className=""
+              className="grow text-right"
               placeholder="prof"
               value={form.prof}
               onChange={(e) => updateForm({ prof: e.target.value })}
-            />
+              />
+              </label>
           </div>
 
           <div>
             <label
               htmlFor="speed"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Speed
-            </label>
             <input
               type="text"
               name="speed"
               id="speed"
-              className=""
+              className="grow text-right"
               placeholder="speed"
               value={form.speed}
               onChange={(e) => updateForm({ speed: e.target.value })}
-            />
+              />
+              </label>
           </div>      
 
           <div>
             <label
               htmlFor="hitDie"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
+
             >
               Hit Die
-            </label>
             <input
               type="text"
               name="hitDie"
               id="hitDie"
-              className=""
+              className="grow text-right"
               placeholder="hitDie"
               value={form.hitDie}
               onChange={(e) => updateForm({ hitDie: e.target.value })}
-            />
+              />
+              </label>
           </div>  
 
         </div>
@@ -440,116 +532,122 @@ export default function Character() {
           <div>
             <label
               htmlFor="strSav"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Strength Save
-            </label>
             <input
-              type="text"
+              type="number"
               name="strSav"
               id="strSav"
-              className=""
+              className="grow text-right"
               placeholder="strSav"
               value={form.strSav}
               onChange={(e) => updateForm({ strSav: e.target.value })}
-            />
+              />
+              <div class="divider divider-horizontal"></div>
             <label htmlFor="strSavProf" className="">Proficient?</label>
-            <input type="checkbox" name="strSavProf" id="strSavProf" className="" value={form.strSavProf} onChange={(e) => updateForm({ strSavProf: e.target.value })} />
+            <input type="checkbox" name="strSavProf" id="strSavProf" className="" checked={form.strSavProf} onChange={(e) => updateForm({ strSavProf: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="dexSav"
-              className=""
+          class="input input-bordered flex items-center gap-2 w-auto"
             >
               Dexterity Save
-            </label>
             <input
-              type="text"
+              type="number"
               name="dexSav"
               id="dexSav"
-              className=""
+              className="grow text-right"
               placeholder="dexSav"
               value={form.dexSav}
               onChange={(e) => updateForm({ dexSav: e.target.value })}
-            />
+              />
+              <div class="divider divider-horizontal"></div>
                         <label htmlFor="dexSavProf" className="">Proficient?</label>
-                        <input type="checkbox" name="dexSavProf" id="dexSavProf" className="" value={form.dexSavProf} onChange={(e) => updateForm({ dexSavProf: e.target.value })} />
+                        <input type="checkbox" name="dexSavProf" id="dexSavProf" className="" checked={form.dexSavProf} onChange={(e) => updateForm({ dexSavProf: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="conSav"
-              className=""
+          class="input input-bordered flex items-center gap-2 w-auto"
             >
               Constitution Save
-            </label>
             <input
-              type="text"
+              type="number"
               name="conSav"
               id="conSav"
-              className=""
+              className="grow text-right"
               placeholder="conSav"
-              value={form.con}
+              value={form.conSav}
               onChange={(e) => updateForm({ conSav: e.target.value })}
-            />
+              />
+            <div class="divider divider-horizontal"></div>
                         <label htmlFor="conSavProf" className="">Proficient?</label>
-                        <input type="checkbox" name="conSavProf" id="conSavProf" className="" value={form.conSavProf} onChange={(e) => updateForm({ conSavProf: e.target.value })} />
+                        <input type="checkbox" name="conSavProf" id="conSavProf" className="" checked={form.conSavProf} onChange={(e) => updateForm({ conSavProf: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="inteSav"
-              className=""
+                        class="input input-bordered flex items-center gap-2 w-auto"
             >
               Intelligence Save
-            </label>
             <input
-              type="text"
+              type="number"
               name="inteSav"
               id="inteSav"
-              className=""
+              className="grow text-right"
               placeholder="inteSav"
-              value={form.inte}
+              value={form.inteSav}
               onChange={(e) => updateForm({ inteSav: e.target.value })}
-            />
+              />
+            <div class="divider divider-horizontal"></div>
                         <label htmlFor="inteSavProf" className="">Proficient?</label>
-                        <input type="checkbox" name="inteSavProf" id="inteSavProf" className="" value={form.inteSavProf} onChange={(e) => updateForm({ inteSavProf: e.target.value })} />
+                        <input type="checkbox" name="inteSavProf" id="inteSavProf" className="" checked={form.inteSavProf} onChange={(e) => updateForm({ inteSavProf: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="wisSav"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Wisdom Save
-            </label>
             <input
-              type="text"
+              type="number"
               name="wisSav"
               id="wisSav"
-              className=""
+              className="grow text-right"
               placeholder="wisSav"
               value={form.wisSav}
               onChange={(e) => updateForm({ wisSav: e.target.value })}
-            />
+              />
+            <div class="divider divider-horizontal"></div>
                         <label htmlFor="wisSavProf" className="">Proficient?</label>
-                        <input type="checkbox" name="wisSavProf" id="wisSavProf" className="" value={form.wisSavProf} onChange={(e) => updateForm({ wisSavProf: e.target.value })} />
+                        <input type="checkbox" name="wisSavProf" id="wisSavProf" className="" checked={form.wisSavProf} onChange={(e) => updateForm({ wisSavProf: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="chaSav"
-              className=""
+            class="input input-bordered flex items-center gap-2 w-auto"
             >
               Charisma Save
-            </label>
             <input
-              type="text"
+              type="number"
               name="chaSav"
               id="chaSav"
-              className=""
+              className="grow text-right"
               placeholder="chaSav"
               value={form.chaSav}
               onChange={(e) => updateForm({ chaSav: e.target.value })}
-            />
+              />
+            <div class="divider divider-horizontal"></div>
                         <label htmlFor="chaSavProf" className="">Proficient?</label>
-                        <input type="checkbox" name="chaSavProf" id="chaSavProf" className="" value={form.chaSavProf} onChange={(e) => updateForm({ chaSavProf: e.target.value })} />
+                        <input type="checkbox" name="chaSavProf" id="chaSavProf" className="" checked={form.chaSavProf} onChange={(e) => updateForm({ chaSavProf: e.target.checked })} />
+            </label>
           </div>
           
         </div>
@@ -567,380 +665,416 @@ export default function Character() {
           <div>
             <label
               htmlFor="acrobatics"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Acrobatics
-            </label>
             <input
-              type="text"
+              type="number"
               name="acrobatics"
               id="acrobatics"
-              className=""
+              className="grow text-right"
               placeholder="acrobatics"
               value={form.acrobatics}
               onChange={(e) => updateForm({ acrobatics: e.target.value })}
-            />
+              />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="acrobaticsProf" className="">Proficient?</label>
-            <input type="checkbox" name="acrobaticsProf" id="acrobaticsProf" className="" value={form.acrobaticsProf} onChange={(e) => updateForm({ acrobaticsProf: e.target.value })} />
+            <input type="checkbox" name="acrobaticsProf" id="acrobaticsProf" className="" checked={form.acrobaticsProf} onChange={(e) => updateForm({ acrobaticsProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="acrobaticsExper" className="">Expertise?</label>
-            <input type="checkbox" name="acrobaticsExper" id="acrobaticsExper" className="" value={form.acrobaticsExper} onChange={(e) => updateForm({ acrobaticsExper: e.target.value })} />
+            <input type="checkbox" name="acrobaticsExper" id="acrobaticsExper" className="" checked={form.acrobaticsExper} onChange={(e) => updateForm({ acrobaticsExper: e.target.checked })} />
+            </label>
           </div>
           <div>
             <label
               htmlFor="animalHandling"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Animal Handling
-            </label>
             <input
-              type="text"
+              type="number"
               name="animalHandling"
               id="animalHandling"
-              className=""
+              className="grow text-right"
               placeholder="animalHandling"
               value={form.animalHandling}
               onChange={(e) => updateForm({ animalHandling: e.target.value })}
             />
+                        <div class="divider divider-horizontal"></div>
             <label htmlFor="animalHandlingProf" className="">Proficient?</label>
-            <input type="checkbox" name="animalHandlingProf" id="animalHandlingProf" className="" value={form.animalHandlingProf} onChange={(e) => updateForm({ animalHandlingProf: e.target.value })} />
+            <input type="checkbox" name="animalHandlingProf" id="animalHandlingProf" className="" checked={form.animalHandlingProf} onChange={(e) => updateForm({ animalHandlingProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="animalHandlingExper" className="">Expertise?</label>
-            <input type="checkbox" name="animalHandlingExper" id="animalHandlingExper" className="" value={form.animalHandlingExper} onChange={(e) => updateForm({ animalHandlingExper: e.target.value })} />
+            <input type="checkbox" name="animalHandlingExper" id="animalHandlingExper" className="" checked={form.animalHandlingExper} onChange={(e) => updateForm({ animalHandlingExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="arcana"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Arcana
-            </label>
             <input
-              type="text"
+              type="number"
               name="arcana"
               id="arcana"
-              className=""
+              className="grow text-right"
               placeholder="arcana"
               value={form.arcana}
               onChange={(e) => updateForm({ arcana: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="arcanaProf" className="">Proficient?</label>
-            <input type="checkbox" name="arcanaProf" id="arcanaProf" className="" value={form.arcanaProf} onChange={(e) => updateForm({ arcanaProf: e.target.value })} />
+            <input type="checkbox" name="arcanaProf" id="arcanaProf" className="" checked={form.arcanaProf} onChange={(e) => updateForm({ arcanaProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="arcanaExper" className="">Expertise?</label>
-            <input type="checkbox" name="arcanaExper" id="arcanaExper" className="" value={form.arcanaExper} onChange={(e) => updateForm({ arcanaExper: e.target.value })} />
+            <input type="checkbox" name="arcanaExper" id="arcanaExper" className="" checked={form.arcanaExper} onChange={(e) => updateForm({ arcanaExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="athletics"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Athletics
-            </label>
             <input
-              type="text"
+              type="number"
               name="athletics"
               id="athletics"
-              className=""
+              className="grow text-right"
               placeholder="athletics"
               value={form.athletics}
               onChange={(e) => updateForm({ athletics: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="athleticsProf" className="">Proficient?</label>
-            <input type="checkbox" name="athleticsProf" id="athleticsProf" className="" value={form.athleticsProf} onChange={(e) => updateForm({ athleticsProf: e.target.value })} />
+            <input type="checkbox" name="athleticsProf" id="athleticsProf" className="" checked={form.athleticsProf} onChange={(e) => updateForm({ athleticsProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="athleticsExper" className="">Expertise?</label>
-            <input type="checkbox" name="athleticsExper" id="athleticsExper" className="" value={form.athleticsExper} onChange={(e) => updateForm({ athleticsExper: e.target.value })} />
+            <input type="checkbox" name="athleticsExper" id="athleticsExper" className="" checked={form.athleticsExper} onChange={(e) => updateForm({ athleticsExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="deception"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Deception
-            </label>
             <input
-              type="text"
+              type="number"
               name="deception"
               id="deception"
-              className=""
+              className="grow text-right"
               placeholder="deception"
               value={form.deception}
               onChange={(e) => updateForm({ deception: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="deceptionProf" className="">Proficient?</label>
-            <input type="checkbox" name="deceptionProf" id="deceptionProf" className="" value={form.deceptionProf} onChange={(e) => updateForm({ deceptionProf: e.target.value })} />
+            <input type="checkbox" name="deceptionProf" id="deceptionProf" className="" checked={form.deceptionProf} onChange={(e) => updateForm({ deceptionProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="deceptionExper" className="">Expertise?</label>
-            <input type="checkbox" name="deceptionExper" id="deceptionExper" className="" value={form.deceptionExper} onChange={(e) => updateForm({ deceptionExper: e.target.value })} />
+            <input type="checkbox" name="deceptionExper" id="deceptionExper" className="" checked={form.deceptionExper} onChange={(e) => updateForm({ deceptionExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="herstory"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               History
-            </label>
             <input
-              type="text"
+              type="number"
               name="herstory"
               id="herstory"
-              className=""
+              className="grow text-right"
               placeholder="herstory"
               value={form.herstory}
               onChange={(e) => updateForm({ herstory: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="herstoryProf" className="">Proficient?</label>
-            <input type="checkbox" name="herstoryProf" id="herstoryProf" className="" value={form.herstoryProf} onChange={(e) => updateForm({ herstoryProf: e.target.value })} />
+            <input type="checkbox" name="herstoryProf" id="herstoryProf" className="" checked={form.herstoryProf} onChange={(e) => updateForm({ herstoryProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="herstoryExper" className="">Expertise?</label>
-            <input type="checkbox" name="herstoryExper" id="herstoryExper" className="" value={form.herstoryExper} onChange={(e) => updateForm({ herstoryExper: e.target.value })} />
+            <input type="checkbox" name="herstoryExper" id="herstoryExper" className="" checked={form.herstoryExper} onChange={(e) => updateForm({ herstoryExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="insight"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Insight
-            </label>
             <input
-              type="text"
+              type="number"
               name="insight"
               id="insight"
-              className=""
+              className="grow text-right"
               placeholder="insight"
               value={form.insight}
               onChange={(e) => updateForm({ insight: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="insightProf" className="">Proficient?</label>
-            <input type="checkbox" name="insightProf" id="insightProf" className="" value={form.insightProf} onChange={(e) => updateForm({ insightProf: e.target.value })} />
+            <input type="checkbox" name="insightProf" id="insightProf" className="" checked={form.insightProf} onChange={(e) => updateForm({ insightProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="insightExper" className="">Expertise?</label>
-            <input type="checkbox" name="insightExper" id="insightExper" className="" value={form.insightExper} onChange={(e) => updateForm({ insightExper: e.target.value })} />
+            <input type="checkbox" name="insightExper" id="insightExper" className="" checked={form.insightExper} onChange={(e) => updateForm({ insightExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="intimidation"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Intimidation
-            </label>
             <input
-              type="text"
+              type="number"
               name="intimidation"
               id="intimidation"
-              className=""
+              className="grow text-right"
               placeholder="intimidation"
               value={form.intimidation}
               onChange={(e) => updateForm({ intimidation: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="intimidationProf" className="">Proficient?</label>
-            <input type="checkbox" name="intimidationProf" id="intimidationProf" className="" value={form.intimidationProf} onChange={(e) => updateForm({ intimidationProf: e.target.value })} />
+            <input type="checkbox" name="intimidationProf" id="intimidationProf" className="" checked={form.intimidationProf} onChange={(e) => updateForm({ intimidationProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="intimidationExper" className="">Expertise?</label>
-            <input type="checkbox" name="intimidationExper" id="intimidationExper" className="" value={form.intimidationExper} onChange={(e) => updateForm({ intimidationExper: e.target.value })} />
+            <input type="checkbox" name="intimidationExper" id="intimidationExper" className="" checked={form.intimidationExper} onChange={(e) => updateForm({ intimidationExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="investigation"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Investigation
-            </label>
             <input
-              type="text"
+              type="number"
               name="investigation"
               id="investigation"
-              className=""
+              className="grow text-right"
               placeholder="investigation"
               value={form.investigation}
               onChange={(e) => updateForm({ investigation: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="investigationProf" className="">Proficient?</label>
-            <input type="checkbox" name="investigationProf" id="investigationProf" className="" value={form.investigationProf} onChange={(e) => updateForm({ investigationProf: e.target.value })} />
+            <input type="checkbox" name="investigationProf" id="investigationProf" className="" checked={form.investigationProf} onChange={(e) => updateForm({ investigationProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="investigationExper" className="">Expertise?</label>
-            <input type="checkbox" name="investigationExper" id="investigationExper" className="" value={form.investigationExper} onChange={(e) => updateForm({ investigationExper: e.target.value })} />
+            <input type="checkbox" name="investigationExper" id="investigationExper" className="" checked={form.investigationExper} onChange={(e) => updateForm({ investigationExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="medicine"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Medicine
-            </label>
             <input
-              type="text"
+              type="number"
               name="medicine"
               id="medicine"
-              className=""
+              className="grow text-right"
               placeholder="medicine"
               value={form.medicine}
               onChange={(e) => updateForm({ medicine: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="medicineProf" className="">Proficient?</label>
-            <input type="checkbox" name="medicineProf" id="medicineProf" className="" value={form.medicineProf} onChange={(e) => updateForm({ medicineProf: e.target.value })} />
+            <input type="checkbox" name="medicineProf" id="medicineProf" className="" checked={form.medicineProf} onChange={(e) => updateForm({ medicineProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="medicineExper" className="">Expertise?</label>
-            <input type="checkbox" name="medicineExper" id="medicineExper" className="" value={form.medicineExper} onChange={(e) => updateForm({ medicineExper: e.target.value })} />
+            <input type="checkbox" name="medicineExper" id="medicineExper" className="" checked={form.medicineExper} onChange={(e) => updateForm({ medicineExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="nature"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Nature
-            </label>
-            <input
-              type="text"
+              <input
+              type="number"
               name="nature"
               id="nature"
-              className=""
+              className="grow text-right"
               placeholder="nature"
               value={form.nature}
               onChange={(e) => updateForm({ nature: e.target.value })}
-            />
+              />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="natureProf" className="">Proficient?</label>
-            <input type="checkbox" name="natureProf" id="natureProf" className="" value={form.natureProf} onChange={(e) => updateForm({ natureProf: e.target.value })} />
+            <input type="checkbox" name="natureProf" id="natureProf" className="" checked={form.natureProf} onChange={(e) => updateForm({ natureProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="natureExper" className="">Expertise?</label>
-            <input type="checkbox" name="natureExper" id="natureExper" className="" value={form.natureExper} onChange={(e) => updateForm({ natureExper: e.target.value })} />
+            <input type="checkbox" name="natureExper" id="natureExper" className="" checked={form.natureExper} onChange={(e) => updateForm({ natureExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="perception"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Perception
-            </label>
             <input
-              type="text"
+              type="number"
               name="perception"
               id="perception"
-              className=""
+              className="grow text-right"
               placeholder="perception"
               value={form.perception}
               onChange={(e) => updateForm({ perception: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="perceptionProf" className="">Proficient?</label>
-            <input type="checkbox" name="perceptionProf" id="perceptionProf" className="" value={form.perceptionProf} onChange={(e) => updateForm({ perceptionProf: e.target.value })} />
+            <input type="checkbox" name="perceptionProf" id="perceptionProf" className="" checked={form.perceptionProf} onChange={(e) => updateForm({ perceptionProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="perceptionExper" className="">Expertise?</label>
-            <input type="checkbox" name="perceptionExper" id="perceptionExper" className="" value={form.perceptionExper} onChange={(e) => updateForm({ perceptionExper: e.target.value })} />
+            <input type="checkbox" name="perceptionExper" id="perceptionExper" className="" checked={form.perceptionExper} onChange={(e) => updateForm({ perceptionExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="performance"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Performance
-            </label>
             <input
-              type="text"
+              type="number"
               name="performance"
               id="performance"
-              className=""
+              className="grow text-right"
               placeholder="performance"
               value={form.performance}
               onChange={(e) => updateForm({ performance: e.target.value })}
             />
+                        <div class="divider divider-horizontal"></div>
             <label htmlFor="performanceProf" className="">Proficient?</label>
-            <input type="checkbox" name="performanceProf" id="performanceProf" className="" value={form.performanceProf} onChange={(e) => updateForm({ performanceProf: e.target.value })} />
+            <input type="checkbox" name="performanceProf" id="performanceProf" className="" checked={form.performanceProf} onChange={(e) => updateForm({ performanceProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="performanceExper" className="">Expertise?</label>
-            <input type="checkbox" name="performanceExper" id="performanceExper" className="" value={form.aperformanceExper} onChange={(e) => updateForm({ performanceExper: e.target.value })} />
+            <input type="checkbox" name="performanceExper" id="performanceExper" className="" checked={form.aperformanceExper} onChange={(e) => updateForm({ performanceExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="persuasion"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Persuasion
-            </label>
             <input
-              type="text"
+              type="number"
               name="persuasion"
               id="persuasion"
-              className=""
+              className="grow text-right"
               placeholder="persuasion"
               value={form.persuasion}
               onChange={(e) => updateForm({ persuasion: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="persuasionProf" className="">Proficient?</label>
-            <input type="checkbox" name="persuasionProf" id="persuasionProf" className="" value={form.persuasionProf} onChange={(e) => updateForm({ persuasionProf: e.target.value })} />
+            <input type="checkbox" name="persuasionProf" id="persuasionProf" className="" checked={form.persuasionProf} onChange={(e) => updateForm({ persuasionProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="persuasionExper" className="">Expertise?</label>
-            <input type="checkbox" name="persuasionExper" id="persuasionExper" className="" value={form.persuasionExper} onChange={(e) => updateForm({ persuasionExper: e.target.value })} />
+            <input type="checkbox" name="persuasionExper" id="persuasionExper" className="" checked={form.persuasionExper} onChange={(e) => updateForm({ persuasionExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="religion"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Religion
-            </label>
             <input
-              type="text"
+              type="number"
               name="religion"
               id="religion"
-              className=""
+              className="grow text-right"
               placeholder="religion"
               value={form.religion}
               onChange={(e) => updateForm({ religion: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="religionProf" className="">Proficient?</label>
-            <input type="checkbox" name="religionProf" id="religionProf" className="" value={form.religionProf} onChange={(e) => updateForm({ religionProf: e.target.value })} />
+            <input type="checkbox" name="religionProf" id="religionProf" className="" checked={form.religionProf} onChange={(e) => updateForm({ religionProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="religionExper" className="">Expertise?</label>
-            <input type="checkbox" name="religionExper" id="religionExper" className="" value={form.religionExper} onChange={(e) => updateForm({ religionExper: e.target.value })} />
+            <input type="checkbox" name="religionExper" id="religionExper" className="" checked={form.religionExper} onChange={(e) => updateForm({ religionExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="sleight"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Sleight of Hand
-            </label>
             <input
-              type="text"
+              type="number"
               name="sleight"
               id="sleight"
-              className=""
+              className="grow text-right"
               placeholder="sleight"
               value={form.sleight}
               onChange={(e) => updateForm({ sleight: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="sleightProf" className="">Proficient?</label>
-            <input type="checkbox" name="sleightProf" id="sleightProf" className="" value={form.sleightProf} onChange={(e) => updateForm({ sleightProf: e.target.value })} />
+            <input type="checkbox" name="sleightProf" id="sleightProf" className="" checked={form.sleightProf} onChange={(e) => updateForm({ sleightProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="sleightExper" className="">Expertise?</label>
-            <input type="checkbox" name="sleightExper" id="sleightExper" className="" value={form.sleightExper} onChange={(e) => updateForm({ sleightExper: e.target.value })} />
+            <input type="checkbox" name="sleightExper" id="sleightExper" className="" checked={form.sleightExper} onChange={(e) => updateForm({ sleightExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="stealth"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Stealth
-            </label>
             <input
-              type="text"
+              type="number"
               name="stealth"
               id="stealth"
-              className=""
+              className="grow text-right"
               placeholder="stealth"
               value={form.stealth}
               onChange={(e) => updateForm({ stealth: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="stealthProf" className="">Proficient?</label>
-            <input type="checkbox" name="stealthProf" id="stealthProf" className="" value={form.stealthProf} onChange={(e) => updateForm({ stealthProf: e.target.value })} />
+            <input type="checkbox" name="stealthProf" id="stealthProf" className="" checked={form.stealthProf} onChange={(e) => updateForm({ stealthProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="stealthExper" className="">Expertise?</label>
-            <input type="checkbox" name="stealthExper" id="stealthExper" className="" value={form.stealthExper} onChange={(e) => updateForm({ stealthExper: e.target.value })} />
+            <input type="checkbox" name="stealthExper" id="stealthExper" className="" checked={form.stealthExper} onChange={(e) => updateForm({ stealthExper: e.target.checked })} />
+              </label>
           </div>
           <div>
             <label
               htmlFor="survival"
-              className=""
+              class="input input-bordered flex items-center gap-2 w-auto"
             >
               Survival
-            </label>
             <input
-              type="text"
+              type="number"
               name="survival"
               id="survival"
-              className=""
+              className="grow text-right"
               placeholder="survival"
               value={form.survival}
               onChange={(e) => updateForm({ survival: e.target.value })}
-            />
+              />
+                          <div class="divider divider-horizontal"></div>
             <label htmlFor="survivalProf" className="">Proficient?</label>
-            <input type="checkbox" name="survivalProf" id="survivalProf" className="" value={form.survivalProf} onChange={(e) => updateForm({ survivalProf: e.target.value })} />
+            <input type="checkbox" name="survivalProf" id="survivalProf" className="" checked={form.survivalProf} onChange={(e) => updateForm({ survivalProf: e.target.checked })} />
+            <div class="divider divider-horizontal"></div>
             <label htmlFor="survivalExper" className="">Expertise?</label>
-            <input type="checkbox" name="survivalExper" id="survivalExper" className="" value={form.survivalExper} onChange={(e) => updateForm({ survivalExper: e.target.value })} />
+            <input type="checkbox" name="survivalExper" id="survivalExper" className="" checked={form.survivalExper} onChange={(e) => updateForm({ survivalExper: e.target.checked })} />
+              </label>
           </div>
 
 

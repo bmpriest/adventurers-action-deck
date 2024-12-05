@@ -8,6 +8,7 @@ import App from "./App";
 import Record from "./components/Record";
 import RecordList from "./components/RecordList";
 import Character from "./components/Character";
+import PlaySpace from "./components/PlaySpace";
 import "./index.css";
 
 const router = createBrowserRouter([
@@ -22,16 +23,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/edit/:id",
-    element: <App />,
-    children: [
-      {
-        path: "/edit/:id",
-        element: <Record />,
-      },
-    ],
-  },
-  {
     path: "/create",
     element: <App />,
     children: [
@@ -41,6 +32,27 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/edit/:id",
+    element: <App />,
+    children: [
+      {
+        path: "/edit/:id",
+        element: <Character />,
+      },
+    ],
+  },
+  {
+    path: "/play/:id",
+    element: <App />,
+    children: [
+      {
+        path: "/play/:id",
+        element: <PlaySpace />,
+      },
+    ],
+  },
+
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

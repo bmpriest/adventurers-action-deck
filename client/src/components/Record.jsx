@@ -94,7 +94,7 @@ export default function Record() {
             <h2 className="prose">
               Employee Info
             </h2>
-            <p className="mt-1 text-sm leading-6 text-slate-600">
+            <p className="">
               This information will be displayed publicly so be careful what you
               share.
             </p>
@@ -104,7 +104,7 @@ export default function Record() {
             <div className="sm:col-span-4">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium leading-6 text-slate-900"
+                className="block"
               >
                 Name
               </label>
