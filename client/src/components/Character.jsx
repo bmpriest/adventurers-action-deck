@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+
 export default function Character() {
+  const [resources, setResources] = useState([{title: "", maxValue: "", curValue: "", number: "", shape: ""}])
   const [form, setForm] = useState({
     name: "",
     level: "",
@@ -16,6 +18,7 @@ export default function Character() {
     wis: "",
     cha: "",
     maxHP: "",
+    curHP: "",
     ac: "",
     init: "",
     prof: "",
@@ -87,6 +90,8 @@ export default function Character() {
 		survival: "",
     survivalExper: "",
     survivalProf: "",
+    deck: "",
+    resource: ""
   });
   const [isNew, setIsNew] = useState(true);
   const params = useParams();
@@ -112,6 +117,7 @@ export default function Character() {
         return;
       }
       setForm(record);
+      setResources(record.resource)
     }
     fetchData();
     return;
@@ -123,6 +129,76 @@ export default function Character() {
       return { ...prev, ...value };
     });
   }
+
+  function handleResChange(event, index) {
+    let data = [...resources];
+    data[index][event.target.name] = event.target.value;
+    // console.log(event.target.name)
+    if (event.target.name == 'maxValue') {data[index].curValue = event.target.value; }
+    setResources(data);
+    updateForm({ resource: resources })
+  }
+
+  function addResource(e) {
+    e.preventDefault();
+    let res = {title: "", maxValue: "", curValue: "", number: "", shape: ""}
+    setResources([...resources, res])
+  }
+
+  function rmvResource(index) {
+    let data = [...resources];
+    data.splice(index, 1);
+    setResources(data);
+    updateForm({ resource: resources })
+  }
+
+  function handleRadio(event, index) {
+    let data = [...resources];
+    switch(event.target.id) {
+      case 'number':
+        data[index].number = true;
+        data[index].shape = false;
+        document.getElementById('shapeChoice').setAttribute("disabled", "true");
+        document.getElementById('shapeChoice').setAttribute("value", "none");
+        break
+      case 'icon':
+        data[index].shape = document.getElementById('shapeChoice').value;
+        data[index].number = false;
+        document.getElementById('shapeChoice').removeAttribute("disabled");
+        break
+    }
+    setResources(data);
+    updateForm({ resource: resources })
+  }
+
+  function printResource(event, index) {
+    event.preventDefault();
+    let data = [...resources];
+    console.log(data[index]);
+  }
+
+  function renderResource(index) {
+    let data = [...resources];
+    
+    if (data[index].number) {
+      return (
+        <div>
+          {data[index].title} {data[index].curValue} / {data[index].maxValue}
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          {data[index].title} 
+          <div class="rating">
+            {Array.from(Array(Number(data[index].maxValue)), (e, i) => {
+              return <input type="radio" name="previewRating" class={"mask " + data[index].shape} key={i} />
+            })}
+          </div>
+        </div>
+      )
+    }
+}
 
   // This function will handle the submission.
   async function onSubmit(e) {
@@ -416,7 +492,7 @@ export default function Character() {
               className="grow text-right"
               placeholder="maxHP"
               value={form.maxHP}
-              onChange={(e) => updateForm({ maxHP: e.target.value })}
+              onChange={(e) => updateForm({ maxHP: e.target.value, curHP: e.target.value })}
               />
               </label>
           </div>
@@ -1087,8 +1163,79 @@ export default function Character() {
         <div className="card-body">
           <div>
             <h2 className="card-title">
-                Character Flavor Text
+                Character Resources
             </h2>
+            {resources.map((resource, index) => {
+                  return (
+
+                    <div key={index}>
+                      <div class="flex items-center gap-2">
+                        <div class="join grow">
+                          <label class="input input-bordered flex items-center gap-2 grow">
+                            Resource name
+                          <input 
+                            type="text" 
+                            class="grow" 
+                            name="title"
+                            value={resources[index].title}
+                            onChange={event => handleResChange(event, index)}
+                            />
+                          <div class="divider divider-horizontal"></div>
+                          <input
+                            type="number"
+                            class=""
+                            name="maxValue"
+                            value={resources[index].maxValue}
+                            placeholder="Maximum Value"
+                            onChange={event => handleResChange(event, index)}
+                            />
+                          
+                          </label>
+                      </div>
+                      <div class="join">
+                          <input class="join-item btn" type="radio" name={"options-" + index} id="number" aria-label="Number" checked={resources[index].number} onClick={event => handleRadio(event, index)}/>
+                          <input class="join-item btn " type="radio" name={"options-" + index} id="icon" aria-label="Icon" checked={resources[index].shape} onClick={event => handleRadio(event, index)}/>
+                          <select class="join-item btn select-bordered" name="shape" id="shapeChoice" value={resources[index].shape} onChange={event => handleResChange(event, index)}>
+                            <option value="none"></option>
+                            <option value="mask-squircle">Squircle</option>
+                            <option value="mask-heart">Heart</option>
+                            <option value="mask-hexagon">Hexagon</option>
+                            <option value="mask-hexagon-2">Hexagon 2</option>
+                            <option value="mask-decagon">Decagon</option>
+                            <option value="mask-pentagon">Pentagon</option>
+                            <option value="mask-diamond">Diamond</option>
+                            <option value="mask-square">Square</option>
+                            <option value="mask-circle">Circle</option>
+                            <option value="mask-parallelogram">Parallelogram</option>
+                            <option value="mask-parallelogram-2">Parallelogram 2</option>
+                            <option value="mask-parallelogram-3">Parallelogram 3</option>
+                            <option value="mask-parallelogram-4">Parallelogram 4</option>
+                            <option value="mask-star">Star</option>
+                            <option value="mask-star-2">Star 2</option>
+                            <option value="mask-triangle">Triangle</option>
+                            <option value="mask-triangle-2">Triangle 2</option>
+                            <option value="mask-triangle-3">Triangle 3</option>
+                            <option value="mask-triangle-4">Triangle 4</option>
+                          </select>
+                      </div>
+                      <button class="btn btn-circle btn-xs" onClick={() => rmvResource(index)}>X</button>
+                     {/* <button class="btn btn-xs" onClick={event => printResource(event, index)}>Print</button> */}
+                     </div>
+                      <div>
+                        Preview: 
+                      </div>
+                      <div>
+                        {renderResource(index)}
+                      </div>
+                    </div>
+
+                    )
+                    })}
+
+                     <div class="label">
+                        <span class="label-text-alt"><button class="btn btn-xs" onClick={addResource}>Add Resource</button></span>
+                        <span class="label-text-alt"></span>
+                      </div>
           </div>
         </div>
       </div>

@@ -45,6 +45,7 @@ router.post("/", async (req, res) => {
       wis: req.body.wis,
       cha: req.body.cha,
       maxHP: req.body.maxHP,
+      curHP: req.body.curHP,
       ac: req.body.ac,
       init: req.body.init,
       prof: req.body.prof,
@@ -116,6 +117,8 @@ router.post("/", async (req, res) => {
       survival: req.body.survival,
       survivalExper: req.body.survivalExper,
       survivalProf: req.body.survivalProf,
+      deck: req.body.deck,
+      resource: req.body.resource
     };
     let collection = await db.collection("records");
     let result = await collection.insertOne(newDocument);
@@ -145,6 +148,7 @@ router.patch("/:id", async (req, res) => {
         wis: req.body.wis,
         cha: req.body.cha,
         maxHP: req.body.maxHP,
+        curHP: req.body.curHP,
         ac: req.body.ac,
         init: req.body.init,
         prof: req.body.prof,
@@ -216,6 +220,8 @@ router.patch("/:id", async (req, res) => {
         survival: req.body.survival,
         survivalExper: req.body.survivalExper,
         survivalProf: req.body.survivalProf,
+        deck: req.body.deck,
+        resource: req.body.resource
       },
     };
 
