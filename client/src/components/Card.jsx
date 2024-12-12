@@ -1,19 +1,65 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Card({ deck, setter, resources }) {
-  const [damages, setDamages] = useState([{diceNum: "", diceType: "", bonus: "", damageType: ""}]);
-  const [res, setRes] = useState([{title: "", bonus: "", value: ""}]);
-  const [card, setCard] = useState({
-    title: "",
-    type: "",
-    description: "",
-    attr: "",
-    useResource: "",
-    resource: [],
-    isAttack: "",
-    damage: [],
-    isProficient: ""
-  })
+export default function Card({ id, setId, deck, setter, resources, blank = true }) {
+  const [card, setCard] = useState(createInitialCard)
+  const [res, setRes] = useState(createInitialRes);
+  const [damages, setDamages] = useState(createInitialDamages);
+
+  let len = 0;
+  if (resources !== undefined) { len = resources.length }
+
+  let modalId
+  if (blank) {
+    modalId = "new_modal_card"
+  } else {
+    modalId = "modal_card_" + card.id;
+  }
+
+  function createInitialCard() {
+    if (blank) {
+      return {
+        id: id,
+        title: "",
+        type: "",
+        description: "",
+        attr: "",
+        useResource: "",
+        resource: [],
+        isAttack: "",
+        damage: [],
+        isProficient: ""
+      }
+    } else {
+      return {
+        id: deck[id].id,
+        title: deck[id].title,
+        type: deck[id].type,
+        description: deck[id].description,
+        attr: deck[id].attr,
+        useResource: deck[id].useResource,
+        resource: deck[id].resource,
+        isAttack: deck[id].isAttack,
+        damage: deck[id].damage,
+        isProficient: deck[id].isProficient
+      }
+    }
+  }
+
+  function createInitialDamages() {
+    if (blank) {
+      return [{diceNum: "", diceType: "", bonus: "", damageType: ""}];
+    } else {
+      return deck[id].damage;
+    }
+  }
+
+  function createInitialRes() {
+    if (blank) {
+      return [{title: "", bonus: "", value: ""}];
+    } else {
+      return deck[id].resource
+    }
+  }
 
   function updateCard(value) {
     return setCard((prev) => {
@@ -72,83 +118,107 @@ export default function Card({ deck, setter, resources }) {
     setRes(data);
   }
 
-
+  function printDeck(e) {
+    e.preventDefault();
+    console.log(deck)
+    console.log(card)
+  }
 
   function onSubmit(e) {
     e.preventDefault();
-    setter(card);
-    closeModal();
+    if (blank) {
+      setId(id + 1)
+      setter({...card, id: id})
+    } else {
+      let data = [...deck]
+      data.splice(card.id, 1, card);
+      setter(data, true)
+    }
+    resetModal();
   }
 
-  function closeModal() {
-    setCard({     
-      title: "",
-      type: "",
-      description: "",
-      attr: "",
-      useResource: "",
-      resource: [],
-      isAttack: "",
-      damage: [],
-      isProficient: "",
-    })
-    //document.getElementById('add_card_modal').close()
+  function removeCard(index) {
+    let data = [...activeDeck];
+    data.splice(index, 1);
+    updateDeck(data, true);
   }
 
-  let len = 0;
-  try { len = resources.length; } catch(err) {console.log('Didn\'t work')}
+  function resetModal() {
+    if (blank) {
+      document.getElementById(modalId).close()
+      setCard({     
+        id: "",
+        title: "",
+        type: "",
+        description: "",
+        attr: "",
+        useResource: "",
+        resource: [],
+        isAttack: "",
+        damage: [],
+        isProficient: ""
+      })
+      setDamages([{diceNum: "", diceType: "", bonus: "", damageType: ""}])
+      setRes([{title: "", bonus: "", value: ""}])
+    } else {
+      document.getElementById(modalId).close()
+    }
+  }
+
 
 
 
   return (
     <>
-      <button class="btn btn-primary btn-circle btn-lg" onClick={() => document.getElementById('add_card_modal').showModal()}>+</button>
-        <dialog id="add_card_modal" className="modal">
+      <dialog key={card.id} id={modalId} className={"modal " + card.id}>
           <div className="modal-box">
             <form>
-              <div class="grid grid-cols-2 grid-flow-dense gap-4 form-control">
-                <h3 className="col-span-2 order-first font-bold text-lg">New Card!</h3>
+              <div className="grid grid-cols-2 grid-flow-dense gap-4 form-control">
+                <div className="col-span-2 order-first flex justify-between">
+                
+                </div>
 
                 <label className="col-span-2 input input-bordered flex items-center gap-2">
                   Title
                   <input 
                     type="text" 
                     className="grow" 
-                    placeholder="Melee attack" 
+                    placeholder="Melee attack"
+
                     value={card.title}
                     onChange={(e) => updateCard({ title: e.target.value })}
                     />
                 </label>
 
                 <textarea 
-                  class="col-span-1 textarea textarea-bordered" 
+                  className="col-span-1 textarea textarea-bordered" 
                   placeholder="Description"
                   value={card.description}
                   onChange={(e) => updateCard({ description: e.target.value })}
                   ></textarea>
 
                 {/* Damage block */}
-                <div class="col-span-2">
-                <div class="label">
-                  <span class="label-text">Damage</span>
+                <div className="col-span-2">
+                <div className="label">
+                  <span className="label-text">Damage</span>
                 </div>
 
                 {damages.map((damage, index) => {
                   return (
 
                     <div key={index}>
-                      <div class="join flex items-center">
+                      <div className="join flex items-center">
                         <input 
                           type="number" 
-                          class="join-item input input-bordered w-14 shrink" 
+                          className="join-item input input-bordered w-14 shrink" 
                           name="diceNum"
-                          
+                          value={damage.diceNum}
                           onChange={event => handleDmgChange(event, index)}
                           />
                         <select 
-                          class="join-item select select-bordered shrink"
+                          className="join-item select select-bordered shrink"
                           name="diceType"
-                          
+                          value={damage.diceType}
                           onChange={event => handleDmgChange(event, index)}
                           >
                           <option value="">d_</option>
@@ -159,63 +229,63 @@ export default function Card({ deck, setter, resources }) {
                           <option value="12">d12</option>
                           <option value="20">d20</option>
                         </select>
-                        <label class="join-item input input-bordered flex items-center gap-2">
+                        <label className="join-item input input-bordered flex items-center gap-2">
                           +
                           <input 
                             type="number" 
-                            class="join-item w-14 shrink" 
+                            className="join-item w-14 shrink" 
                             name="bonus"
-                            
+                            value={damage.bonus}
                             onChange={event => handleDmgChange(event, index)}
                             />
                         </label>
-                        <label class="join-item input input-bordered flex items-center">
+                        <label className="join-item input input-bordered flex items-center">
                           <input 
                             type="text" 
                             placeholder="damage type" 
-                            class="grow" 
+                            className="grow" 
                             name="damageType"
-                          
+                            value={damage.damageType}
                             onChange={event => handleDmgChange(event, index)}
                             />
-                          <button class="btn btn-circle btn-xs" onClick={() => rmvDamge(index)}>X</button>
+                          <button className="btn btn-circle btn-xs" onClick={() => rmvDamge(index)}>X</button>
                         </label>
                      </div>
                     </div>                      
                   )
                   })}
-                     <div class="label">
-                        <span class="label-text-alt"></span>
-                        <span class="label-text-alt"><button class="btn btn-xs" onClick={addDamage}>Add Damage</button></span>
+                     <div className="label">
+                        <span className="label-text-alt"></span>
+                        <span className="label-text-alt"><button className="btn btn-xs" onClick={addDamage}>Add Damage</button></span>
                       </div>
                   </div>
 
-                <label class="col-span-1 label cursor-pointer">
-                  <span class="label-text">Attack?</span>
+                <label className="col-span-1 label cursor-pointer">
+                  <span className="label-text">Attack?</span>
                   <input 
                     type="checkbox" 
-                    class="toggle"
+                    className="toggle"
                     name="isAttack"
                     id="isAttack"
-                    
+                    value={card.isAttack}
                     onChange={(e) => updateCard({ isAttack: e.target.checked })}
                     />
                 </label>
 
-                <label class="col-span-1 label cursor-pointer">
-                  <span class="label-text">Proficient?</span>
+                <label className="col-span-1 label cursor-pointer">
+                  <span className="label-text">Proficient?</span>
                   <input 
                     type="checkbox" 
-                    class="toggle"
+                    className="toggle"
                     name="isProficient"
                     id="isProficient"
-                    
+                    value={card.isProficient}
                     onChange={(e) => updateCard({ isProficient: e.target.checked })}
                     />
                 </label>
 
                 <select 
-                  class="col-span-1 select select-bordered w-full max-w-xs"
+                  className="col-span-1 select select-bordered w-full max-w-xs"
                   value={card.type}
                   onChange={(e) => updateCard({ type: e.target.value })}
                   >
@@ -228,7 +298,7 @@ export default function Card({ deck, setter, resources }) {
                 </select>
 
                 <select 
-                  class="col-span-1 select select-bordered w-full max-w-xs"
+                  className="col-span-1 select select-bordered w-full max-w-xs"
                   value={card.attr}
                   onChange={(e) => updateCard({ attr: e.target.value })}
                   >
@@ -242,63 +312,65 @@ export default function Card({ deck, setter, resources }) {
                 </select>
 
                 {/* Resource block */}
-                <div class="col-span-2">
-                  <label class="label cursor-pointer">
-                    <span class="label-text">Uses a resource?</span>
+                <div className="col-span-2">
+                  <label className="label cursor-pointer">
+                    <span className="label-text">Uses a resource?</span>
                     <input 
                       type="checkbox" 
-                      class="toggle" 
+                      className="toggle" 
                       name="useResource"
                       id="useResource"
+                      value={card.useResource}
                       checked={card.useResource}                      
                       onChange={(e) => updateCard({ useResource: e.target.checked })}/>
                   </label>
                   {res.map((rs, index) => {
                     return (
-                    <div key={index} class="join flex flex-row justify-between items-center">
-                      <select class="join-item select select-bordered" name="title" disabled={!card.useResource} onChange={event => handleResChange(event, index)}>
+                    <div key={index} className="join flex flex-row justify-between items-center">
+                      <select className="join-item select select-bordered" name="title" value={rs.title} disabled={!card.useResource} onChange={event => handleResChange(event, index)}>
                         <option value=""></option>
                           {Array.from(Array(Number(len)), (e, i) => {
                             return <option key={i} value={resources[i].title}>{resources[i].title}</option>
                             })}                   
                       </select>
-                      <label class="join-item input input-bordered grow flex items-center" >
-                        <div class="join">
-                          <input class="join-item btn btn-sm" 
+                      <label className="join-item input input-bordered grow flex items-center" >
+                        <div className="join">
+                          <input className="join-item btn btn-sm" 
                             type="radio" 
                             name={"res-" + index} 
                             id="bonus" 
                             aria-label="+" 
                             disabled={!card.useResource}
-                            checked={res.bonus} 
-                            onClick={event => handleRadio(event, index)}
+                            checked={rs.bonus} 
+                            onChange={event => handleRadio(event, index)}
                           />
                           <input 
-                            class="join-item btn btn-sm" 
+                            className="join-item btn btn-sm" 
                             type="radio" 
                             name={"res-"+ index} 
                             id="malus" 
                             aria-label="-" 
                             disabled={!card.useResource}
-                            checked={res.bonus}
-                            onClick={event => handleRadio(event, index)}
+                            checked={!rs.bonus}
+                            onChange={event => handleRadio(event, index)}
                           />
                         </div>
                         <input 
-                          class="grow text-right"
+                          className="grow text-right"
                           name="value" 
                           type="number" 
+                          value={rs.value}
                           disabled={!card.useResource} 
                           onChange={event => handleResChange(event, index)}/>
-                        <button class="btn btn-circle btn-xs" onClick={() => rmvRes(index)}>X</button>
+                        <button className="btn btn-circle btn-xs" onClick={() => rmvRes(index)}>X</button>
                       </label>
                     </div>
 
                     )
                   })}
-                  <div class="label">
-                    <span class="label-text-alt"></span>
-                    <span class="label-text-alt"><button class="btn btn-xs" onClick={addRes} disabled={!card.useResource} >Add Resource</button></span>
+                  <div className="label">
+                    <span className="label-text-alt"></span>
+                    <span className="label-text-alt"><button className="btn btn-xs" onClick={addRes} disabled={!card.useResource} >Add Resource</button></span>
                   </div>
 
                 </div>
@@ -307,10 +379,15 @@ export default function Card({ deck, setter, resources }) {
 
 
 
-              <div class="flex items-center">
-                <div className="modal-action">
+              <div className="flex items-center">
+                <div class="justify-self-start self-end">
+                {id}
+                </div>
+                <div class="grow"></div>
+                <div className="modal-action gap-2">
                   <input type="submit" className="btn btn-primary" value="Save Card" onClick={onSubmit}/>
-                  <button className="btn" formMethod="dialog" onClick={closeModal}>Cancel</button>
+                  {/* <button className="btn btn-secondary" onClick={printDeck}>Print</button> */}
+                  <button className="btn" formMethod="dialog" onClick={resetModal}>Cancel</button>
                 </div>
               </div>
             </form>

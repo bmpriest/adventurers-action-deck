@@ -14,6 +14,14 @@ export default function Resources({ char, setter }) {
     setter(copy)
   }
 
+  function changeRes(title, newVal) {
+    let copy = char.resource;
+    for (let r of copy) {
+      if (r.title == title) {r.curValue = newVal + 1}
+    }
+    setter(copy)
+  }
+
   function valueCheck(cV, i) {
     // i starts at 0 for the 'first' so on up to maxValue - 1
     if (cV <= 0) {
@@ -22,17 +30,20 @@ export default function Resources({ char, setter }) {
       return (cV == (i + 1))
     }
   }
+  
   let render = ''
 
   try {
-  let assortment = char.resource
+  let assortment = 0
+  if (char.resource !== undefined) { assortment = char.resource }
+
 
   if (assortment.length > 0) {
-  render = assortment.map(resource => {
+  render = assortment.map((resource, i) => {
     if (resource.number) {
       return (
-        <div class="flex pb-2">
-          <div class="grow">
+        <div key={i} className="flex pb-2">
+          <div className="grow">
           {resource.title} 
           </div>
           <div>{resource.curValue} / {resource.maxValue}</div>
@@ -40,14 +51,14 @@ export default function Resources({ char, setter }) {
       )
     } else {
       return (
-        <div class="flex flex-wrap items-center gap-2 mb-2">
-          <div class="grow">
+        <div key={i} className="flex flex-wrap items-center gap-2 mb-2">
+          <div className="grow">
           {resource.title} 
           </div>
-          <div class="rating flex flex-wrap">
-            <input type="radio" name={resource.title + "-rating"} class="rating-hidden" checked={(resource.curValue <= 0)}/>
+          <div className="rating flex flex-wrap">
+            <input type="radio" name={resource.title + "-rating"} className="rating-hidden" checked={(resource.curValue <= 0)} onChange={() => changeRes(resource.title, -1)}/>
             {Array.from(Array(Number(resource.maxValue)), (e, i) => {
-              return <input type="radio" name={resource.title + "-rating"} id={resource.title + "-" + (i+1)} class={"mask " + resource.shape} checked={valueCheck(resource.curValue, i)} key={i} />
+              return <input type="radio" name={resource.title + "-rating"} id={resource.title + "-" + (i+1)} className={"mask " + resource.shape} checked={valueCheck(resource.curValue, i)} key={i} onChange={() => changeRes(resource.title, i)}/>
             })}
           </div>
         </div>
@@ -61,9 +72,9 @@ export default function Resources({ char, setter }) {
 }
 
   return (
-    <div class="">
+    <div className="">
     {render}
-    <button class="btn btn-sm" onClick={setMax}>Reset Resources</button>
+    {/* <button className="btn btn-sm" onClick={setMax}>Reset Resources</button> */}
     </div>
   )
 }
