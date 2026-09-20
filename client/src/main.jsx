@@ -1,11 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import Record from "./components/Record";
 import RecordList from "./components/RecordList";
 import Character from "./components/Character";
 import PlaySpace from "./components/PlaySpace";
@@ -16,43 +12,30 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <RecordList />,
-      },
+      { path: "/", element: <RecordList /> },
     ],
   },
   {
     path: "/create",
     element: <App />,
     children: [
-      {
-        path: "/create",
-        element: <Character />,
-      },
+      { path: "/create", element: <Character /> },
     ],
   },
   {
     path: "/edit/:id",
     element: <App />,
     children: [
-      {
-        path: "/edit/:id",
-        element: <Character />,
-      },
+      { path: "/edit/:id", element: <Character /> },
     ],
   },
   {
     path: "/play/:id",
     element: <App />,
     children: [
-      {
-        path: "/play/:id",
-        element: <PlaySpace />,
-      },
+      { path: "/play/:id", element: <PlaySpace /> },
     ],
   },
-
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
